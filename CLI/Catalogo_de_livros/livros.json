@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "titulo": "O Hobbit",
+    "autor": "J. R. R. Tolkien"
+  },
+  {
+    "id": 2,
+    "titulo": "Homo Deus",
+    "autor": "Yuval Noah Harari"
+  },
+  {
+    "id": 3,
+    "titulo": "O Último Reino",
+    "autor": "Bernard Cornwell"
+  },
+  {
+    "id": 4,
+    "titulo": "O Cortiço",
+    "autor": "Aluísio Azevedo"
+  },
+  {
+    "id": 5,
+    "titulo": "Crime e Castigo",
+    "autor": "Fiódor Dostoiévski"
+  }
+]
