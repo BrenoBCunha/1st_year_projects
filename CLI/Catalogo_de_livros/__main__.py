@@ -103,10 +103,13 @@ def main():
                 while True:
                     try:
                         opc = int(input("Sua opção: "))
-                    except Exception as e:
+                    except ValueError:
                         print("Opção inválida. Digite somente número inteiro correspondente a uma das opções")
                     else:
-                        break
+                        if opc in (1, 2, 3):
+                            break
+                        else:
+                            print("Digite um número inteiro entre 1 e 3.")
                 if opc == 1:
                     catalogo.editar(id_livro, titulo=pedir_titulo())
                 elif opc == 2:
@@ -125,7 +128,7 @@ def main():
                     print(f"Tem certeza que deseja [red]remover[/] o livro [blue]{livro.titulo}[/]?", end='')
                     opc = input(" [s/n]: ").strip().lower()
                     print("="*40)
-                    if opc in ('s', 'n') and len(opc) > 0:
+                    if opc in ('s', 'n'):
                         break
                     else:
                         print("Digite 's' para SIM e 'n' para NÃO.")

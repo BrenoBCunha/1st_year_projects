@@ -1,6 +1,6 @@
 import pytest
 from biblioteca import CatalogoLivros, RepositorioJSON, Livro
-from pathlib import Path
+import json
 
 
 ### ---- BLOCO CatalogoLivros ---- ###
@@ -148,7 +148,7 @@ def test_rejeita_json_invalido(tmp_path):
 def test_rejeita_json_que_nao_retorne_lista(tmp_path):
     caminho_json = tmp_path / "livros.json"
     
-    caminho_json.write_text('{"id": 1, "titulo": "O Hobbit",}', encoding="utf-8")
+    caminho_json.write_text('{"id": 1, "titulo": "O Hobbit", "autor": "J. R. R. Tolkien"}', encoding="utf-8")
 
     repositorio = RepositorioJSON(caminho_json)
 
@@ -156,5 +156,15 @@ def test_rejeita_json_que_nao_retorne_lista(tmp_path):
         repositorio.carregar()
 
 
+def test_salva_arquivo_json_valido(tmp_path):
+    caminho_json = tmp_path / "livros.json"
+    repositorio = RepositorioJSON(caminho_json)
 
+    catalogo = CatalogoLivros(repositorio)
+    catalogo.adicionar("O Hobbit", "J. R. R. Tolkien")
 
+    with open(caminho_json, 'r', encoding="utf-8") as arquivo:
+        dados = json.load(arquivo)
+
+    assert isinstance(dados, list)
+    assert dados == [{"id": 1, "titulo": "O Hobbit", "autor": "J. R. R. Tolkien"}]
