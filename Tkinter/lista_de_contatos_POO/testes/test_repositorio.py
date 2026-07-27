@@ -38,8 +38,8 @@ def test_salva_json_valido(tmp_path):
         "id": 1,
         "nome": "Breno",
         "telefone": "82988884444",
-        "email": None,
-        "endereco": None
+        "email": "Email não cadastrado.",
+        "endereco": "Endereço não cadastrado."
         }]
 
     

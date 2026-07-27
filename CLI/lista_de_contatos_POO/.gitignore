@@ -1,1 +1,6 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.venv/
 dados/contatos.json

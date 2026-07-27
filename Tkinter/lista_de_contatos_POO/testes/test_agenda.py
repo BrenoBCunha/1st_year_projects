@@ -5,9 +5,9 @@ def test_listar_retorna_uma_lista_ordenada(tmp_path):
     caminho_json = tmp_path / "contatos.json"
     repositorio = RepositorioJson(caminho_json)
     agenda = Agenda(repositorio)
-    agenda.adicionar("Kevin", "82988885555")
-    agenda.adicionar("Breno", "82977776666")
-    agenda.adicionar("Ellie", "82966667777")
+    agenda.adicionar("Breno", "82988885555")
+    agenda.adicionar("Ellie", "82977776666")
+    agenda.adicionar("Kevin", "82966667777")
 
     contatos = agenda.listar()
     lista = [contato.nome for contato in contatos]
@@ -142,5 +142,5 @@ def test_remover_persiste_apos_reiniciar_programa(tmp_path):
     novo_repositorio = RepositorioJson(novo_caminho)
     nova_agenda = Agenda(novo_repositorio)
 
-    assert not nova_agenda.buscar_por_id(1)
+    assert not agenda.buscar_por_id(1)
     

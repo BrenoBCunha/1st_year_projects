@@ -8,8 +8,8 @@ class Agenda:
 
     def adicionar(self, nome:str, telefone:str, email:str="", endereco:str=""):
         id_contato = self.__prox_id
-        contato = Contato(id_contato, nome, telefone, email, endereco)
         self.__prox_id += 1
+        contato = Contato(id_contato, nome, telefone, email, endereco)
         self.__contatos.append(contato)
         self.__repositorio.salvar(self.__contatos)
 
@@ -26,7 +26,7 @@ class Agenda:
         resultados = [contato for contato in self.__contatos if texto.casefold() in contato.nome.casefold()]
         return sorted(resultados, key=lambda contato: contato.nome)
     
-    def editar(self, id_contato:int, nome:str=None, telefone:str=None, email:str=None, endereco:str=None):
+    def editar(self, id_contato:int, nome:str='', telefone:str='', email:str='', endereco:str=''):
         contato = self.buscar_por_id(id_contato)
         if contato is None:
             return False

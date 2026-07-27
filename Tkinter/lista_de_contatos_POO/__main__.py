@@ -156,17 +156,17 @@ def main():
                             break
                 if opc2 == 1:
                     nome = pedir_nome()
-                    agenda.editar(id_contato, nome = nome)
-                elif opc2 == 2:
+                    agenda.editar(id_contato, nome)
+                if opc2 == 2:
                     telefone = pedir_telefone()
-                    agenda.editar(id_contato, telefone = telefone)
-                elif opc2 == 3:
+                    agenda.editar(id_contato, telefone)
+                if opc2 == 3:
                     email = pedir_email()
-                    agenda.editar(id_contato, email = email)
-                elif opc2 == 4:
-                    endereco = pedir_endereco()
-                    agenda.editar(id_contato, endereco = endereco)
-                elif opc2 == 5:
+                    agenda.editar(id_contato, email)
+                if opc2 == 4:
+                    endereco = pedir_endereco
+                    agenda.editar(id_contato, endereco)
+                if opc2 == 5:
                     nome = pedir_nome()
                     telefone = pedir_telefone()
                     email = pedir_email()

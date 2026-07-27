@@ -1,4 +1,3 @@
-import re
 
 class Contato:
     def __init__(self, id_contato:int, nome:str, telefone:str, email:str = "", endereco:str = ""):
@@ -28,10 +27,13 @@ class Contato:
     
 
     def atualizar(self, nome:str, telefone:str, email:str = "", endereco:str = ""):
+        import re
         padrao = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 
         nome = nome.strip()
         telefone = telefone.strip()
+        email = email.strip()
+        endereco = endereco.strip()
 
         telefone = self.normalizar_telefone(telefone)
 
@@ -49,33 +51,29 @@ class Contato:
         self.__telefone = telefone
 
         if not email:
-            self.__email = None
+            self.__email = "Email não cadastrado."
         else:
-            self.__email = email.strip()
+            self.__email = email
 
         if not endereco:
-            self.__endereco = None
+            self.__endereco = "Endereço não cadastrado."
         else:
-            self.__endereco = endereco.strip()
+            self.__endereco = endereco
 
-    def editar(self, nome:str=None, telefone:str=None, email:str=None, endereco:str=None):
-        
-        if nome is None:
+    def editar(self, nome:str='', telefone:str='', email:str='', endereco:str=''):
+        nome = nome.strip()
+        telefone = telefone.strip()
+        email = email.strip()
+        endereco = endereco.strip()
+
+        if not nome:
             nome = self.nome
-        else:
-            nome = nome.strip()
-        if telefone is None:
+        if not telefone:
             telefone = self.telefone
-        else:
-            telefone = telefone.strip()
-        if email is None:
+        if not email:
             email = self.email
-        else:
-            email = email.strip()
-        if endereco is None:
+        if not endereco:
             endereco = self.endereco
-        else:
-            endereco = endereco.strip()
 
         self.atualizar(nome, telefone, email, endereco)
 
