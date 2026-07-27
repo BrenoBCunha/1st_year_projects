@@ -1,12 +1,7 @@
-from uuid import uuid4
-
 
 class Contato:
-    def __init__(self, nome:str, telefone:str, email:str = None, endereco:str = "", id_contato:str = ""):
-        if id_contato is None:
-            self.__id_contato = str(uuid4)
-        else:
-            self.__id_contato = id_contato
+    def __init__(self, id_contato:int, nome:str, telefone:str, email:str = "", endereco:str = ""):
+        self.__id_contato = id_contato
         self.atualizar(nome, telefone, email, endereco)
 
 
@@ -40,28 +35,47 @@ class Contato:
         email = email.strip()
         endereco = endereco.strip()
 
+        telefone = self.normalizar_telefone(telefone)
+
         if not nome:
             raise ValueError("Nome deve conter ao menos um caracter")
 
-        if not telefone or len(telefone) > 15 or len(telefone) < 8:
+        if not telefone or len(telefone) != 11:
             raise ValueError("Telefone inválido. Siga o formato: (DDD)90000-0000")
 
-        if email and not re.match(padrao, email):
+        if email and not re.match(padrao, email) and email != "Email não cadastrado.":
             raise ValueError("Email deve seguir o padrão: seuemail@dominio.com")
 
-
-        telefone = self.normalizar_telefone(telefone)
 
         self.__nome = nome
         self.__telefone = telefone
 
-        if endereco is "":
-            self.__endereco = "Endereço não cadastrado."
-        if email is "":
+        if not email:
             self.__email = "Email não cadastrado."
-        
-        self.__email = self.emial
-        self.__endereco = self.endereco
+        else:
+            self.__email = email
+
+        if not endereco:
+            self.__endereco = "Endereço não cadastrado."
+        else:
+            self.__endereco = endereco
+
+    def editar(self, nome:str='', telefone:str='', email:str='', endereco:str=''):
+        nome = nome.strip()
+        telefone = telefone.strip()
+        email = email.strip()
+        endereco = endereco.strip()
+
+        if not nome:
+            nome = self.nome
+        if not telefone:
+            telefone = self.telefone
+        if not email:
+            email = self.email
+        if not endereco:
+            endereco = self.endereco
+
+        self.atualizar(nome, telefone, email, endereco)
 
 
     def normalizar_telefone(self, telefone):
@@ -72,7 +86,7 @@ class Contato:
         return {
             "id": self.id,
             "nome": self.nome,
-            "telfone": self.telefone,
+            "telefone": self.telefone,
             "email": self.email,
             "endereco": self.endereco
         }
@@ -82,6 +96,3 @@ class Contato:
         return cls(dado["id"], dado["nome"], dado["telefone"], dado["email"], dado["endereco"])
 
 
-texto = ""
-
-print(bool(texto))
