@@ -32,6 +32,7 @@ class Agenda:
             return False
         contato.editar(nome, telefone, email, endereco)
         self.__repositorio.salvar(self.__contatos)
+        return True
 
     def remover(self, id_contato):
         contato = self.buscar_por_id(id_contato)
@@ -39,3 +40,4 @@ class Agenda:
             return False
         self.__contatos.remove(contato)
         self.__repositorio.salvar(self.__contatos)
+        return True
